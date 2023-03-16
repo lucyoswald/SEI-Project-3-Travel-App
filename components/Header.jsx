@@ -5,7 +5,7 @@ const Header = () => {
     { title: "Home", slug: "/" },
     { title: "CountryPage", slug: "countries/:id" },
     { title: "AllCountries", slug: "/countries" },
-
+    { title: "Sign Up", slug: "/signup" },
   ];
 
   return (

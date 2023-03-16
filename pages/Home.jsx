@@ -21,11 +21,13 @@ const Home = () => {
 
     try {
       const { data } = await axios.get(
-        `http://localhost:6000/countries${formData.country}`,
+        `http://localhost:6000/countries`,
         formData
       );
       console.log(data);
-      setCountryInfo(data);
+      const filteredData = data.filter();
+
+      if (countryInfo.length === 0) setCountryInfo(data);
       localStorage.setItem("token", data.token);
     } catch (e) {
       setShowError(true);
@@ -49,6 +51,12 @@ const Home = () => {
           <button>Submit</button>
         </form>
       </section>
+      {!countryInfo ? null : countryInfo.length === 0 ? (
+        <p>Sorry this country hasn't been recognised in our database!</p>
+      ) : (
+        countryInfo.map((country) => <li>{country.name}</li>)
+      )}
+
       {/* <CountryCard countryInfo={countryInfo} /> */}
     </div>
   );
