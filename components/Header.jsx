@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const navigationLinks = [{ title: "Home", slug: "/" }];
+  const navigationLinks = [
+    { title: "Home", slug: "/" },
+    { title: "Sign Up", slug: "/Signup" },
+  ];
 
   return (
-    <body>
+    <div>
       <header className="header">
         <nav>
           <ul>
@@ -16,7 +19,7 @@ const Header = () => {
           </ul>
         </nav>
       </header>
-    </body>
+    </div>
   );
 };
 
