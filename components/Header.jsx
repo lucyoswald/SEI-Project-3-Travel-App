@@ -4,6 +4,8 @@ const Header = () => {
   const navigationLinks = [
     { title: "Home", slug: "/" },
     { title: "CountryPage", slug: "countries/:id" },
+    { title: "AllCountries", slug: "/countries" },
+
   ];
 
   return (
