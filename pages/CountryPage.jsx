@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
-const { useEffect, useState } = require("react");
+import { useEffect, useState } from "react";
 
 const CountryPage = () => {
   const { id } = useParams();
