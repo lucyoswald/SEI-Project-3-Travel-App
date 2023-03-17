@@ -20,7 +20,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="countries/:id" element={<CountryPage />} />
-
         <Route path="/countries" element={<AllCountries />} />
         <Route path="/signup" className="signup" element={<Signup />} />
       </Routes>
