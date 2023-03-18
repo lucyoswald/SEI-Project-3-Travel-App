@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { API_URL } from "../consts.js";
 
 const CountryPage = () => {
   const { id } = useParams();
-  const { country, setCountry } = useState();
+  const [country, setCountry] = useState();
   //   const [countryInfo, setCountryInfo] = useState({
   //     Country: "",
   //     Currency: "",
@@ -13,9 +14,10 @@ const CountryPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get(`http://localhost:8000/countries/${id}`);
+      const { data } = await axios.get(`${API_URL}/countries/${id}`);
       setCountry(data);
       //   setCountryInfo(data);
+      console.log(data);
     };
     fetchData();
   }, []);
