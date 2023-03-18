@@ -5,20 +5,32 @@ import { useEffect, useState } from "react";
 const CountryPage = () => {
   const { id } = useParams();
   const { country, setCountry } = useState();
-  const [formData, setFormData] = useState({
-    Country: "",
-    Currency: "",
-    image: "",
-  });
+  //   const [countryInfo, setCountryInfo] = useState({
+  //     Country: "",
+  //     Currency: "",
+  //     image: "",
+  //   });
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get();
+      const { data } = await axios.get(`http://localhost:8000/countries/${id}`);
+      setCountry(data);
+      //   setCountryInfo(data);
     };
-  });
+    fetchData();
+  }, []);
+
   return (
-    <div>
-      <p>This is the individual country page</p>
+    <div className="country">
+      {country ? (
+        <section className="country__info">
+          <h3>{country.name}</h3>
+          <h4>{country.currencyName}</h4>
+          <h4>{country.continent}</h4>
+        </section>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 };

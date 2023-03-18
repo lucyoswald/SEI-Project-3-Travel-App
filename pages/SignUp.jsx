@@ -34,19 +34,19 @@ const Signup = () => {
   };
 
   return (
-    <div className="sign_up_page">
+    <div className="form_page">
       <img
         src={signup_background_image}
         alt="Background image"
-        className="signup_background_image"
+        className="form_background_image"
       />
       {showError && (
         <div className="error">
           <h4>Something went wrong</h4>
         </div>
       )}
-      <form className="sign_up_form" onSubmit={onSubmit}>
-        <h3 className="sign_up_header">Sign Up</h3>
+      <form className="sl_form" onSubmit={onSubmit}>
+        <h3 className="form_header">Sign Up</h3>
 
         {/* input for USERNAME here */}
         <input

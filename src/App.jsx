@@ -3,6 +3,7 @@ import "./App.css";
 import Home from "../pages/Home";
 import Header from "../components/Header";
 import Signup from "../pages/SignUp";
+import Login from "../pages/Login";
 import CountryPage from "../pages/CountryPage";
 import AllCountries from "../pages/AllCountries";
 
@@ -21,7 +22,8 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="countries/:id" element={<CountryPage />} />
         <Route path="/countries" element={<AllCountries />} />
-        <Route path="/signup" className="signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
