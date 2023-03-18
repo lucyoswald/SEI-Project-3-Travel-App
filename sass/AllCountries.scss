@@ -1,0 +1,11 @@
+.country-card-container {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.country-card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
