@@ -8,4 +8,27 @@
 .country-card {
   margin-top: 20px;
   margin-bottom: 20px;
+  display: grid;
+}
+
+.card-img-top {
+  height: 212px;
+}
+
+.p2_search {
+  justify-content: flex-end;
+  margin-top: 15px;
+  margin-right: 56px;
+  height: 30px;
+}
+
+.activities-button {
+  align-items: flex-end;
+}
+
+@media (max-width: 820px) {
+  .p2_search {
+    justify-content: center;
+    margin-right: 0px;
+  }
 }
