@@ -8,13 +8,6 @@ import { useEffect, useState } from "react";
 
 const AllCountries = () => {
   const [countryCardData, setCountryCardData] = useState([]);
-  // useState({
-  //   countryName: "",
-  //   continent: "",
-  //   countryImage: "",
-  //   text: "",
-  //   numbOfActivities: "",
-  // });
   const [isLoading, setIsLoading] = useState("true");
 
   useEffect(() => {
@@ -27,6 +20,7 @@ const AllCountries = () => {
           return {
             countryName: country.name,
             continent: country.continent,
+            countryId: country._id,
             // countryImage: countryData.,
             // text: countryData.,
             numbOfActivities: country.activities.length,
@@ -50,7 +44,7 @@ const AllCountries = () => {
         <ul className="country-card-container">
           {countryCardData.map((country) => {
             return (
-              <li className="country-card" id={country.id}>
+              <li className="country-card" key={country._id}>
                 <Card style={{ width: "20rem" }}>
                   <Card.Body>
                     <Card.Img
@@ -62,7 +56,11 @@ const AllCountries = () => {
                       {country.numbOfActivities} travel activties
                     </Card.Subtitle>
                     <Card.Text>Text to be added</Card.Text>
-                    <Button as={Link} to="/countries/:id" variant="primary">
+                    <Button
+                      as={Link}
+                      to={`/countries/${country.countryId}`}
+                      variant="primary"
+                    >
                       {" "}
                       See all activities
                     </Button>
