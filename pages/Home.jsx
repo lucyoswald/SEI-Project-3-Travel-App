@@ -2,40 +2,64 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import home_background_image from "../assets/Pretty archway.jpg";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../consts";
 
 const Home = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    country: "",
-  });
-  const [countryInfo, setCountryInfo] = useState(undefined);
-
+  const [searchName, setSearchName] = useState("");
+  const [searchForm, setSearchForm] = useState([]);
   const [showError, setShowError] = useState(false);
 
   const onChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setSearchName(e.target.value);
+    console.log(e.target.value);
   };
+  console.log(searchName);
 
-  const onSubmit = async (e) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axios.get(
+          `${API_URL}/countries?name=${searchName}`
+        );
+        const countryData = data.data;
+        console.log(countryData);
+        const cleanedData = countryData.map((country) => {
+          return {
+            countryName: country.name,
+            countryId: country._id,
+          };
+        });
+
+        setSearchForm(cleanedData);
+      } catch (e) {
+        console.log("This isn't working");
+        setShowError(true);
+      }
+    };
+    fetchData();
+    console.log(searchForm);
+  }, [searchName]);
+
+  function onSubmitForm(e) {
     e.preventDefault();
-
-    try {
-      const { data } = await axios.get(`http://localhost:8000/countries`, {
-        params: formData,
-      });
-      console.log(data);
-      const filteredData = data.filter();
-
-      if (countryInfo.length === 0) setCountryInfo(data);
-      localStorage.setItem("token", data.token);
-    } catch (e) {
-      setShowError(true);
+    const inputVal = e.target.elements.country.value.trim();
+    if (inputVal) {
+      // console.log(searchForm);
+      // console.log("function running");
+      // console.log(searchName);
+      const filteredCountry = searchForm.filter((country) =>
+        country.countryName.toLowerCase().includes(inputVal.toLowerCase())
+      );
+      if (filteredCountry.length > 0) {
+        console.log(filteredCountry[0].countryId);
+        navigate(`/countries/${filteredCountry[0].countryId}`);
+      } else {
+        setShowError(true);
+      }
     }
-  };
+  }
 
   return (
     <div className="home">
@@ -48,20 +72,41 @@ const Home = () => {
       <h4 className="home_header">Where would you like to go?</h4>
 
       <section>
-        <form className="input_form" onSubmit={onSubmit}>
+        <form className="input_form" onSubmit={onSubmitForm}>
           <input
             className="country_search"
-            value={formData.country}
             type="text"
             placeholder="Type in your country..."
             onChange={onChange}
             name="country"
           ></input>
 
-          <button type="button" className="submit_button">
+          <button type="submit" className="submit_button">
             Submit
           </button>
         </form>
+        {showError && (
+          <div class="container p-5 error">
+            <div
+              class="alert alert-danger alert-dismissible fade show errorbox"
+              role="alert"
+            >
+              <strong>
+                We apologize, the country you have selected cannot be found
+                within our database
+              </strong>
+              <button
+                type="button"
+                class="close closebutton"
+                data-dismiss="alert"
+                aria-label="Close"
+                onClick={() => setShowError(false)}
+              >
+                <span aria-hidden="True">&times;</span>
+              </button>
+            </div>
+          </div>
+        )}
         <section className="signup_login_buttons">
           <button
             type="button"
@@ -79,13 +124,6 @@ const Home = () => {
           </button>
         </section>
       </section>
-      {!countryInfo ? null : countryInfo.length === 0 ? (
-        <p>Sorry this country hasn't been recognised in our database!</p>
-      ) : (
-        countryInfo.map((country) => <li>{country.name}</li>)
-      )}
-
-      {/* <CountryCard countryInfo={countryInfo} /> */}
     </div>
   );
 };

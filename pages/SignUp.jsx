@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import signup_background_image from "../assets/Italian_mountains.jpg";
+import { API_URL } from "../consts.js";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const Signup = () => {
     e.preventDefault();
     console.log("Submit button clicked");
     try {
-      await axios.post(`http://localhost:6000/countries`, formData);
+      await axios.post(`${API_URL}/signup`, formData);
       navigate("/login");
     } catch (e) {
       console.log(e);
@@ -40,11 +41,6 @@ const Signup = () => {
         alt="Background image"
         className="form_background_image"
       />
-      {showError && (
-        <div className="error">
-          <h4>Something went wrong</h4>
-        </div>
-      )}
       <form className="sl_form" onSubmit={onSubmit}>
         <h3 className="form_header">Sign Up</h3>
 
@@ -87,6 +83,25 @@ const Signup = () => {
         <button type="submit">Sign up</button>
         <p onClick={() => navigate("/login")}>Already have an account? </p>
       </form>
+      {showError && (
+        <div classs="container p-5 serror">
+          <div
+            class="alert alert-danger alert-dismissible fade show signuperror"
+            role="alert"
+          >
+            <strong>Something went wrong...</strong>
+            <button
+              type="button"
+              class="close sclosebutton"
+              data-dismiss="alert"
+              aria-label="Close"
+              onClick={() => setShowError(false)}
+            >
+              <span aria-hidden="True">&times;</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

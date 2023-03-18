@@ -43,11 +43,7 @@ const Login = () => {
 
       <form onSubmit={onSubmit} className="sl_form login_form">
         <h3 className="form_header login">Login</h3>
-        {showError && (
-          <div className="error">
-            <h4>Somthing went wrong..</h4>
-          </div>
-        )}
+
         <input
           className="input_text"
           type="email"
@@ -67,6 +63,25 @@ const Login = () => {
         <button type="submit">Login</button>
         <p onClick={() => navigate("/signup")}>Don't have an account? </p>
       </form>
+      {showError && (
+        <div classs="container p-5 lerror">
+          <div
+            class="alert alert-danger alert-dismissible fade show loginerror"
+            role="alert"
+          >
+            <strong>Something went wrong...</strong>
+            <button
+              type="button"
+              class="close lclosebutton"
+              data-dismiss="alert"
+              aria-label="Close"
+              onClick={() => setShowError(false)}
+            >
+              <span aria-hidden="True">&times;</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
