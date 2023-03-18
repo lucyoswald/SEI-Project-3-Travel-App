@@ -71,3 +71,60 @@
   height: 350px;
   width: 450px;
 }
+.signuperror {
+  font-size: 11px;
+  width: 20vw;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.serror {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.sclosebutton {
+  background-color: transparent;
+  border: none;
+  color: #842029;
+  margin-right: -40px;
+  margin-top: -30px;
+  font-size: 12px;
+}
+
+.loginerror {
+  font-size: 11px;
+  width: 20vw;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.lerror {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.lclosebutton {
+  background-color: transparent;
+  border: none;
+  color: #842029;
+  margin-right: -40px;
+  margin-top: -30px;
+  font-size: 12px;
+}
+
+// @media screen and (min-width: 768px) {
+//   form {
+//     width: 500px;
+//   }
+// }
