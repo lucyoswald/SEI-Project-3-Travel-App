@@ -5,9 +5,9 @@ import { Container } from "react-bootstrap";
 
 const Header = () => {
   const navigationLinks = [
-    { title: "Home", slug: "/" },
-    { title: "Country Page", slug: "countries/:id" },
-    { title: "All Countries", slug: "/countries" },
+    // { title: "Home", slug: "/" },
+    // { title: "Country Page", slug: "countries/:id" },
+    { title: "Browse Countries", slug: "/countries" },
     { title: "Sign Up", slug: "/signup" },
     { title: "Login", slug: "/login" },
     { title: "Sign Out", slug: "/sign-out" },
@@ -16,11 +16,12 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand href="#home"></Navbar.Brand>
-        {/* <Navbar.Brand as={Link} to={"/"}> */}
+        <Navbar.Brand as={Link} to={"/"}>
+          Design My Trip
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse>
-          <Nav className=" me-auto">
+        <Navbar.Collapse className="all_nav">
+          <Nav>
             <ul>
               {navigationLinks.map((link, idx) => (
                 <Nav.Link
