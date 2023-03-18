@@ -1,9 +1,8 @@
 nav {
   & ul {
-    // display: flex;
     list-style: none;
     margin-bottom: 0;
-    // gap: 20px;
+    padding-left: 0;
   }
 }
 
@@ -12,6 +11,7 @@ nav {
     & ul {
       display: flex;
       gap: 20px;
+      justify-content: flex-end;
     }
   }
 }

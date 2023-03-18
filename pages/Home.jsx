@@ -24,7 +24,7 @@ const Home = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.get(`http://localhost:6000/countries`, {
+      const { data } = await axios.get(`http://localhost:8000/countries`, {
         params: formData,
       });
       console.log(data);
