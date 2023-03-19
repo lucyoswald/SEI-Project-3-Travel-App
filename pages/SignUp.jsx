@@ -24,6 +24,7 @@ const Signup = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Submit button clicked");
+    console.log(`This is the form data ${JSON.stringify(formData)}`);
     try {
       await axios.post(`${API_URL}/signup`, formData);
       navigate("/login");
