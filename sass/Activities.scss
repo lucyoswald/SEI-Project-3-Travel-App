@@ -2,11 +2,16 @@
 //work - will be chatting to Luke re the use !important and how I can minimise
 //that but main thing it works!!!
 
+//All card styles
 .card {
   border: none !important;
   background-color: #ececec !important;
 }
+.cardbutton {
+  font-size: 12px !important;
+}
 
+//Individual Country card
 .country_background_image {
   height: 200px;
   width: 100px;
@@ -34,11 +39,7 @@
 }
 
 .currency {
-  //   margin-left: 10x !important;
   font-size: 13px !important;
-}
-.cardbutton {
-  font-size: 12px !important;
 }
 
 .card-text span {
@@ -84,24 +85,10 @@
   font-size: 18px;
 }
 
-@media (max-width: 768px) {
-  .category_box {
-    width: 90%;
-  }
-}
+//Carousel specific icons - the indicators have
+//disappeared again will chat on Tues to figure out
+//why
 
-@media (min-width: 769px) {
-  .category_box {
-    max-width: 450px;
-  }
-}
-// footer {
-//   background-color: #f2f2f2;
-//   color: #333;
-//   padding: 20px;
-//   text-align: center;
-//   width: 200vw;
-// }
 .carousel-control-prev,
 .carousel-control-next {
   margin-top: 100px;
@@ -117,6 +104,19 @@
   margin-right: -20px;
 }
 
-.carousel-indicators {
-  margin-right: -10px !important;
+// .carousel-indicators {
+//   margin-right: -10px !important;
+// }
+
+//Media queries
+@media (max-width: 768px) {
+  .category_box {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) {
+  .category_box {
+    max-width: 450px;
+  }
 }

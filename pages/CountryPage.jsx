@@ -6,11 +6,13 @@ import country_temp_image from "../assets/Cinque_Terra_night.jpg";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { Carousel } from "react-bootstrap";
-// import country_page_background_image from "../assets/pexels-krivec-ales-547114.jpg";
+import Heart from "react-heart";
+
 const CountryPage = () => {
   const { id } = useParams();
   const [country, setCountry] = useState();
   const [activities, setActivities] = useState([]);
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,17 +27,26 @@ const CountryPage = () => {
     fetchData();
   }, []);
 
+  const likeButton = async () => {
+    //you want to post to the backend and update the country
+    //schema number ofLikes
+    //then you want to update the inner text to say 1like or 2 so on + maybe have the button change to 'remove like"
+    try {
+      await axios.post(`${API_URL}/countries/${id}`, { numberOflikes: 1 });
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="individual_country">
-      {/* <img
-        src={country_page_background_image}
-        alt="Background image"
-        className="country_page_background_image"
-      /> */}
       <div className="individual_country__card">
         <Card>
           <Card.Img
             varient="top"
+            //   {country.countryData.image} - so weird i added this in and it works
+            //but then if you refresh the picture goes!
             src={country_temp_image}
             alt="country_image"
             className="country_background_image"
@@ -57,6 +68,27 @@ const CountryPage = () => {
                 <Button variant="primary" className="cardbutton">
                   Add your own activity
                 </Button>{" "}
+                <div
+                  style={{
+                    position: "absolute",
+                    bottom: "1rem",
+                    right: "1rem",
+                    marginRight: "0.8rem",
+                  }}
+                >
+                  <div style={{ width: "2rem" }}>
+                    <Heart
+                      isActive={active}
+                      onClick={() => setActive(!active)}
+                      animationTrigger="both"
+                      inactiveColor="rgba(255,125,125,.75)"
+                      activeColor="#FFB6C1"
+                      animationDuration={0.1}
+                      className="heart"
+                    />
+                  </div>
+                </div>
+                {/* <button onClick={() => likeButton()}>Like </button> */}
               </div>
             ) : (
               <p>Loading...</p>
