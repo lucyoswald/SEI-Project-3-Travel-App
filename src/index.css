@@ -3,3 +3,14 @@
   box-sizing: border-box;
   padding: 0;
 }
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+  overscroll-behavior: none;
+}

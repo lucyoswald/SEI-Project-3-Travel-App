@@ -20,9 +20,10 @@ const Header = () => {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("token") ? true : false);
     console.log("Location updated");
-    console.log({ location });
-    console.log({ navigate });
+    // console.log({ location });
+    // console.log({ navigate });
   }, [location]);
+  console.log(isLoggedIn);
 
   const logOut = () => {
     localStorage.removeItem("token");
@@ -52,9 +53,8 @@ const Header = () => {
                       key={idx}
                       as={Link}
                       to={link.slug}
-                      onClick="hide.bs.dropdown"
-                      // onClick={link.slug === "/" && { logOut }}
-                      // THIS NEEDS WORK
+                      // onClick="hide.bs.dropdown"
+                      onClick={link.title === "Sign Out" && logOut}
                     >
                       <li>{link.title}</li>
                     </Nav.Link>
