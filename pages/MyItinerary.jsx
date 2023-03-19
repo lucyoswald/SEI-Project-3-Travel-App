@@ -1,5 +1,5 @@
 const MyItinerary = () => {
-  console.log("You are on the itinerary page.");
+  return <h2>You've made it to the My Itinerary Page!!!</h2>;
 };
 
 export default MyItinerary;
