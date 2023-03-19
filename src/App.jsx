@@ -6,6 +6,7 @@ import Signup from "../pages/SignUp";
 import Login from "../pages/Login";
 import CountryPage from "../pages/CountryPage";
 import AllCountries from "../pages/AllCountries";
+import MyItinerary from "../pages/MyItinerary";
 
 {
   /* <style>
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" element={<Home />}></Route>
         <Route path="countries/:id" element={<CountryPage />} />
         <Route path="/countries" element={<AllCountries />} />
+        <Route path="/myitinerary" element={<MyItinerary />}></Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
       </Routes>
