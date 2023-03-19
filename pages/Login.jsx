@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import login_background_image from "../assets/pexels-ben-mack-5326926.jpg";
+import { API_URL } from "../consts.js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -22,10 +23,7 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
-        `http://localhost:8000/countries/login`,
-        formData
-      );
+      const { data } = await axios.post(`${API_URL}/login`, formData);
       localStorage.setItem("token", data.token);
       navigate("/");
     } catch (err) {
