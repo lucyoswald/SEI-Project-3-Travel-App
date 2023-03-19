@@ -1,0 +1,122 @@
+//Please ignore these styling rules - took me all night to get everything to
+//work - will be chatting to Luke re the use !important and how I can minimise
+//that but main thing it works!!!
+
+.card {
+  border: none !important;
+  background-color: #ececec !important;
+}
+
+.country_background_image {
+  height: 200px;
+  width: 100px;
+}
+
+.individual_country {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin: 80px;
+}
+
+.individual_country__card {
+  width: 100%;
+  margin-bottom: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}
+
+.continent {
+  margin-bottom: 10px !important;
+}
+
+.currency {
+  //   margin-left: 10x !important;
+  font-size: 13px !important;
+}
+.cardbutton {
+  font-size: 12px !important;
+}
+
+.card-text span {
+  display: block;
+  line-height: 1.5;
+  margin-bottom: 1px;
+}
+
+//Actvities styling (this took me the whole damn night)
+.activity_card {
+  margin-bottom: 200px !important;
+}
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.category_box {
+  margin: 1em;
+  width: 30%;
+}
+
+.activity_text {
+  font-size: 12px;
+  height: 200px;
+  overflow: hidden;
+  padding: 5px 2px;
+}
+
+.activity_text:hover {
+  height: auto;
+  overflow: visible;
+  transition: height 0.5s ease;
+}
+
+.activity_name {
+  font-size: 16px !important;
+}
+.category_header {
+  margin-top: 0;
+  text-align: center;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .category_box {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) {
+  .category_box {
+    max-width: 450px;
+  }
+}
+// footer {
+//   background-color: #f2f2f2;
+//   color: #333;
+//   padding: 20px;
+//   text-align: center;
+//   width: 200vw;
+// }
+.carousel-control-prev,
+.carousel-control-next {
+  margin-top: 100px;
+  width: 1rem;
+  height: 1rem;
+}
+
+.carousel-control-prev {
+  margin-left: -20px;
+}
+
+.carousel-control-next {
+  margin-right: -20px;
+}
+
+.carousel-indicators {
+  margin-right: -10px !important;
+}
