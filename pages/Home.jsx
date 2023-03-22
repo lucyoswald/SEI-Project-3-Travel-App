@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import home_background_image from "../assets/Pretty archway.jpg";
 import { useNavigate } from "react-router-dom";
@@ -15,49 +15,35 @@ const Home = () => {
     setSearchName(e.target.value);
     console.log(e.target.value);
   };
-  console.log(searchName);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const { data } = await axios.get(
-          `${API_URL}/countries?name=${searchName}`
-        );
-        const countryData = data.data;
-        console.log(countryData);
-        const cleanedData = countryData.map((country) => {
-          return {
-            countryName: country.name,
-            countryId: country._id,
-          };
-        });
-
-        setSearchForm(cleanedData);
-      } catch (e) {
-        console.log("This isn't working");
-        setShowError(true);
-      }
-    };
-    fetchData();
-    console.log(searchForm);
-  }, [searchName]);
 
   function onSubmitForm(e) {
     e.preventDefault();
     const inputVal = e.target.elements.country.value.trim();
     if (inputVal) {
-      // console.log(searchForm);
-      // console.log("function running");
-      // console.log(searchName);
-      const filteredCountry = searchForm.filter((country) =>
-        country.countryName.toLowerCase().includes(inputVal.toLowerCase())
-      );
-      if (filteredCountry.length > 0) {
-        console.log(filteredCountry[0].countryId);
-        navigate(`/countries/${filteredCountry[0].countryId}`);
-      } else {
-        setShowError(true);
-      }
+      axios
+        .get(`${API_URL}/countries?name=${inputVal}`)
+        .then(({ data }) => {
+          const countryData = data.data;
+          console.log(countryData);
+          const cleanedData = countryData.map((country) => {
+            return {
+              countryName: country.name,
+              countryId: country._id,
+            };
+          });
+
+          setSearchForm(cleanedData);
+
+          if (cleanedData.length > 0) {
+            console.log(cleanedData[0].countryId);
+            navigate(`/countries/${cleanedData[0].countryId}`);
+          } else {
+            setShowError(true);
+          }
+        })
+        .catch(() => {
+          setShowError(searchName !== "");
+        });
     }
   }
 
