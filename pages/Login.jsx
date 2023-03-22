@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import login_background_image from "../assets/pexels-ben-mack-5326926.jpg";
+import login_background_image from "../assets/pexels-marlon-martinez-1494708.jpg";
 import { API_URL } from "../consts.js";
 
 const Login = () => {
