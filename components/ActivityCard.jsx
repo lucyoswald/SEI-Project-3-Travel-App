@@ -2,14 +2,21 @@ import { Card, Button } from "react-bootstrap";
 import { Carousel } from "react-bootstrap";
 import axios from "axios";
 import { API_URL } from "../consts";
+import { useState } from "react";
+import jwt_decode from "jwt-decode";
 
 const ActivityCard = ({ activities }) => {
+  const [addedToItinerary, setAddedToItinerary] = useState(false);
+
   const addToItinerary = async (activityId) => {
     try {
       const token = localStorage.getItem("token");
-      //   console.log(token);
-      const addedActivity = await axios.post(
-        `${API_URL}/itinerary`,
+      const decodedToken = jwt_decode(token);
+      console.log(decodedToken);
+      const userId = decodedToken.id;
+
+      const addedActivity = await axios.patch(
+        `${API_URL}/user/${userId}`,
         { activityId },
         {
           headers: {
@@ -18,6 +25,9 @@ const ActivityCard = ({ activities }) => {
         }
       );
       console.log(addedActivity);
+      if (activityId === activities._id) {
+        setAddedToItinerary(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -60,8 +70,11 @@ const ActivityCard = ({ activities }) => {
                             onClick={() => addToItinerary(activity._id)}
                             variant="primary"
                             className="cardbutton"
+                            // disabled={addedToItinerary}
                           >
-                            Add to Itinerary
+                            {addedToItinerary
+                              ? "Added to Itinerary"
+                              : "Add to Itinerary"}
                           </Button>
                         </Card.Body>
                       </Card>
