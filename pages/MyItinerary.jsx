@@ -3,9 +3,18 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../consts";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import { Card, Button } from "react-bootstrap";
+import ItineraryCard from "../components/ItineraryCard";
 
 const MyItinerary = () => {
-  const [activityName, setActivityName] = useState("");
+  const [activityDetails, setActivityDetails] = useState([]);
+  // = useState({
+  //   activityCountry: "",
+  //   description: "",
+  //   link: "",
+  //   activityName: "",
+  //   price: 0,
+  // });
   const token = localStorage.getItem("token");
   const decodedToken = jwt_decode(token);
   let userId = decodedToken.id;
@@ -21,9 +30,21 @@ const MyItinerary = () => {
         });
         // console.log(dbResponse);
         const { foundUser } = dbResponse.data;
-        console.log(foundUser);
-        console.log(foundUser.itinerary[0].name);
-        setActivityName(foundUser.itinerary[0].name);
+        // console.log(foundUser);
+        const itineraryArray = foundUser.itinerary;
+        console.log(itineraryArray);
+        let updatedItineraryArray = itineraryArray.map((activity) => {
+          return {
+            activityCountry: activity.activityCountry,
+            description: activity.description,
+            link: activity.link,
+            activityName: activity.name,
+            price: activity.price,
+            activityId: activity.id,
+          };
+        });
+        // console.log(updatedItineraryArray);
+        setActivityDetails(updatedItineraryArray);
       } catch (err) {
         console.log(err);
       }
@@ -32,9 +53,31 @@ const MyItinerary = () => {
   }, []);
 
   return (
-    <div>
-      <h2>You've made it to the My Itinerary Page!!!</h2>
-      <p>{activityName}</p>
+    <div classname="itinerary-card-container">
+      <h2 className="itinerary-heading">Personal Itinerary</h2>
+      <ul className="itinerary-card">
+        {activityDetails.map(
+          ({
+            activityCountry,
+            description,
+            link,
+            activityName,
+            price,
+            activityId,
+          }) => {
+            return (
+              <ItineraryCard
+                activityCountry={activityCountry}
+                activity={activityName}
+                description={description}
+                link={link}
+                price={price}
+                activityId={activityId}
+              />
+            );
+          }
+        )}
+      </ul>
     </div>
   );
 };
