@@ -3,29 +3,41 @@ import Heart from "react-heart";
 import { useState } from "react";
 import axios from "axios";
 import { API_URL } from "../consts.js";
+import { useParams } from "react-router-dom";
 const CountryCard = ({ country }) => {
-  console.log(country.countryData);
+  // console.log(country.countryData);
   const [active, setActive] = useState(false);
   const [likes, setLikes] = useState(undefined);
-
+  // const [heartResponse, setHeartResponse] = useState(null);
+  // const userId = useParams();
+  // console.log(userId);
   const likeButton = async () => {
+    //get item from local storage and save
+
+    const lsCountries = localStorage.getItem("localStorageCountries");
+    console.log(lsCountries);
+
     let newNumberOfLikes = country.countryData.numberOfLikes;
-
-    //check if the liked country is in the user likes
-
-    if (active) {
-      setLikes(newNumberOfLikes + 1);
-    } else if (!active) {
-      setLikes(newNumberOfLikes - 1);
-    }
-
     const id = country.countryData._id;
-    console.log(id);
 
     try {
       const token = localStorage.getItem("token");
+      const userId = localStorage.getItem("userId");
+      //user id in the route
+      const res = await axios.patch(`${API_URL}/userlikes/${userId}`, {
+        country: country.countryData.name,
+      });
+      console.log(res);
+
+      const localStorageCountries = res.data.updatedLikes.likedCountries;
+
+      localStorage.setItem("localStorageCountries", localStorageCountries);
+
+      console.log(localStorageCountries);
+
+      //country id in the route
       await axios.patch(
-        `${API_URL}/countries/${id}`,
+        `${API_URL}/countries/${id}/likes`,
         { numberOfLikes: active ? newNumberOfLikes - 1 : newNumberOfLikes + 1 },
         {
           headers: {
@@ -93,6 +105,11 @@ const CountryCard = ({ country }) => {
                       animationDuration={0.1}
                       className="heart"
                     />
+                    <p>
+                      {active
+                        ? country.countryData.numberOfLikes + 1
+                        : country.countryData.numberOfLikes}
+                    </p>
                   </div>
                 </div>
                 {/* <button onClick={() => likeButton()}>Like </button> */}
