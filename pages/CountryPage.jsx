@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../consts.js";
 import CountryCard from "../components/CountryCard.jsx";
 import LoadingVisual from "../components/LoadingVisual";
-import ActivityCard from "../components/ActivityCard.jsx";
+import ActivityCarousel from "../components/ActivityCarousel.jsx";
 
 const CountryPage = () => {
   const { id } = useParams();
@@ -38,7 +38,7 @@ const CountryPage = () => {
       ) : (
         <div>
           <CountryCard country={country} />
-          <ActivityCard activities={activities} />
+          <ActivityCarousel activities={activities} />
         </div>
       )}
     </div>

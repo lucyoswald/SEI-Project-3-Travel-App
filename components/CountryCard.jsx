@@ -45,14 +45,14 @@ const CountryCard = ({ country }) => {
       const decodedToken = jwt_decode(token);
       console.log(decodedToken);
       const userId = decodedToken.id;
-      const activityLocation = country.countryData._id;
-      console.log(activityLocation);
+      const countryId = country.countryData._id;
+      console.log(countryId);
       const addedActivity = await axios.post(
         `${API_URL}/activities`,
         {
           ...formData,
           createdBy: userId,
-          activityCountry: activityLocation,
+          activityCountry: countryId,
         },
         {
           headers: {
