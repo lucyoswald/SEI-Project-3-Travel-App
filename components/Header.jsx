@@ -27,6 +27,7 @@ const Header = () => {
 
   const logOut = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     navigate("/");
   };
 

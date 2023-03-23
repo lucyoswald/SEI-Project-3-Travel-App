@@ -26,28 +26,37 @@ nav {
   }
 }
 
-// .footer {
-//   position: absolute;
-//   bottom: 0;
-//   width: 100%;
-// }
+.footer {
+  position: relative;
+  background-color: whitesmoke;
+  // margin: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  // z-index: -1;
+}
 
-// .footer-links {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
-// .built-by {
-//   margin-right: 1rem;
-// }
+.footer-links a {
+  color: #0071c2;
+  text-decoration: none;
+  // margin-right: 1rem;
+}
 
-// .footer-links a {
-//   color: #0071c2;
-//   text-decoration: none;
-//   margin-right: 1rem;
-// }
+.text-right {
+  text-align: right;
+}
 
-// .text-right {
-//   text-align: right;
-// }
+.footer_home {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-top: 10px;
+  background-color: whitesmoke;
+}
