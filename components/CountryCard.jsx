@@ -46,15 +46,15 @@ const CountryCard = ({ country }) => {
     <div className="individual_country">
       <div className="individual_country__card">
         <Card>
+          <Card.Img
+            varient="top"
+            src={country.countryData.image}
+            alt="country_image"
+            className="country_background_image"
+          />
           <Card.Body>
             {country ? (
               <div className="country__info">
-                <Card.Img
-                  varient="top"
-                  src={country.countryData.image}
-                  alt="country_image"
-                  className="country_background_image"
-                />
                 <Card.Title className="country_card_name">
                   {country.countryData.name}
                 </Card.Title>
