@@ -15,7 +15,7 @@ const AllCountryCard = ({
         <Card.Body>
           <Card.Title>{countryName}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            {numbOfActivities} travel activties
+            {numbOfActivities} activties
           </Card.Subtitle>
           <Card.Text>{text}</Card.Text>
           <Button
