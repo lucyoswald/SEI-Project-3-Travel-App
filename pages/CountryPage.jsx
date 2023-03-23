@@ -31,27 +31,6 @@ const CountryPage = () => {
     fetchData();
   }, []);
 
-  const likeButton = async () => {
-    //you want to post to the backend and update the country
-    //schema number ofLikes
-    //then you want to update the inner text to say 1like or 2 so on + maybe have the button change to 'remove like"
-    try {
-      const token = localStorage.getItem("token");
-      await axios.post(
-        `${API_URL}/countries/${id}`,
-        { numberOflikes: 1 },
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      );
-      console.log(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   return (
     <div>
       {isLoading ? (

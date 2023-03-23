@@ -9,6 +9,7 @@ const CountryCard = ({ country }) => {
   const [active, setActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [likes, setLikes] = useState(undefined);
   const initialFormData = {
     category: "",
     activityCountry: "",
@@ -62,6 +63,40 @@ const CountryCard = ({ country }) => {
       console.log(addedActivity);
     } catch (err) {
       console.log("not worked");
+      console.log(err);
+    }
+  };
+
+  const likeButton = async () => {
+    let newNumberOfLikes = country.countryData.numberOfLikes;
+
+    //check if the liked country is in the user likes
+
+    if (active) {
+      setLikes(newNumberOfLikes + 1);
+    } else if (!active) {
+      setLikes(newNumberOfLikes - 1);
+    }
+
+    const id = country.countryData._id;
+    console.log(id);
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.patch(
+        `${API_URL}/countries/${id}`,
+        { numberOfLikes: active ? newNumberOfLikes - 1 : newNumberOfLikes + 1 },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+      // console.log(data);
+      //append the country onto the likedCountries array
+
+      console.log("Liked!");
+    } catch (err) {
       console.log(err);
     }
   };
@@ -190,7 +225,11 @@ const CountryCard = ({ country }) => {
                       <div style={{ width: "2rem" }}>
                         <Heart
                           isActive={active}
-                          onClick={() => setActive(!active)}
+                          onClick={() => {
+                            console.log(active);
+                            setActive(!active);
+                            likeButton();
+                          }}
                           animationTrigger="both"
                           inactiveColor="rgba(255,125,125,.75)"
                           activeColor="#FFB6C1"

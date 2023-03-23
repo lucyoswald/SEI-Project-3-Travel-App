@@ -6,10 +6,10 @@ import { API_URL } from "../consts.js";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    userName: "",
     email: "",
     password: "",
-    passwordConfirmation: "",
+    confirmPassword: "",
   });
   const [showError, setShowError] = useState(false);
   const navigate = useNavigate();
@@ -49,9 +49,9 @@ const Signup = () => {
         <input
           className="input_text first_input"
           type="text"
-          value={formData.username}
+          value={formData.userName}
           placeholder="Username"
-          name="username"
+          name="userName"
           onChange={onChange}
         ></input>
         {/* input for EMAIL here */}
@@ -76,9 +76,9 @@ const Signup = () => {
         <input
           className="input_text"
           type="password"
-          value={formData.passwordConfirmation}
+          value={formData.confirmPassword}
           placeholder="Confirm Password"
-          name="passwordConfirmation"
+          name="confirmPassword"
           onChange={onChange}
         ></input>
         <button type="submit">Sign up</button>
