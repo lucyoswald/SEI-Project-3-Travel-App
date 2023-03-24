@@ -6,10 +6,21 @@ import { API_URL } from "../consts";
 import jwt_decode from "jwt-decode";
 
 const CountryCard = ({ country }) => {
-  const [active, setActive] = useState(false);
+  const lsCountries = localStorage.getItem("localStorageCountries");
+  const [active, setActive] = useState(
+    lsCountries.includes(country.countryData.name) ? true : false
+  );
+  const [numOfLikes, setNumOfLikes] = useState(
+    country.countryData.numberOfLikes
+  );
+  // if (lsCountries.includes(country.countryData.name)) {
+  //   setActive(true);
+  //   console.log("active true");
+  // } else {
+  //   setActive(false);
+  // }
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
-  const [likes, setLikes] = useState(undefined);
   const initialFormData = {
     category: "",
     activityCountry: "",
@@ -70,20 +81,28 @@ const CountryCard = ({ country }) => {
   const likeButton = async () => {
     //get item from local storage and save
 
-    const lsCountries = localStorage.getItem("localStorageCountries");
-    console.log(lsCountries);
+    // const lsCountries = localStorage.getItem("localStorageCountries");
 
-    let newNumberOfLikes = country.countryData.numberOfLikes;
+    // if (lsCountries.includes(country.countryData.name)) {
+    //   setActive(true);
+    //   console.log("active true");
+    // } else {
+    //   setActive(false);
+    // }
+
+    // let newNumberOfLikes = country.countryData.numberOfLikes;
     const id = country.countryData._id;
 
     try {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
       //user id in the route
+      // if (!active) {
       const res = await axios.patch(`${API_URL}/userlikes/${userId}`, {
         country: country.countryData.name,
       });
       console.log(res);
+      // }
 
       const localStorageCountries = res.data.updatedLikes.likedCountries;
 
@@ -92,18 +111,20 @@ const CountryCard = ({ country }) => {
       console.log(localStorageCountries);
 
       //country id in the route
-      await axios.patch(
+      const response = await axios.patch(
         `${API_URL}/countries/${id}/likes`,
-        { numberOfLikes: active ? newNumberOfLikes - 1 : newNumberOfLikes + 1 },
+        { numberOfLikes: active ? numOfLikes - 1 : numOfLikes + 1 },
         {
           headers: {
             Authorization: token,
           },
         }
       );
+      console.log(response);
       // console.log(data);
       //append the country onto the likedCountries array
-
+      setActive(!active);
+      setNumOfLikes(response.data.foundCountry.numberOfLikes);
       console.log("Liked!");
     } catch (err) {
       console.log(err);
@@ -236,7 +257,7 @@ const CountryCard = ({ country }) => {
                           isActive={active}
                           onClick={() => {
                             console.log(active);
-                            setActive(!active);
+                            // setActive(!active);
                             likeButton();
                           }}
                           animationTrigger="both"
@@ -245,10 +266,13 @@ const CountryCard = ({ country }) => {
                           animationDuration={0.1}
                           className="heart"
                         />
-                        <p>
-                          {active
-                            ? country.countryData.numberOfLikes + 1
-                            : country.countryData.numberOfLikes}
+                        <p
+                          style={{
+                            marginLeft: "5px",
+                            marginTop: "2px",
+                          }}
+                        >
+                          {numOfLikes}
                         </p>
                       </div>
                     </div>

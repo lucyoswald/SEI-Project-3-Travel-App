@@ -27,6 +27,7 @@ const Login = () => {
       console.log(data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("userId", data.userId);
+      localStorage.setItem("localStorageCountries", data.likedCountries);
       navigate("/");
     } catch (err) {
       setShowError(true);
