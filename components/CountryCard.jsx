@@ -9,6 +9,7 @@ const CountryCard = ({ country }) => {
   const [active, setActive] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [likes, setLikes] = useState(undefined);
   const initialFormData = {
     category: "",
@@ -61,6 +62,10 @@ const CountryCard = ({ country }) => {
         }
       );
       console.log(addedActivity);
+      if (addedActivity) {
+        setShowForm(false);
+        setShowSuccess(true);
+      }
     } catch (err) {
       console.log("not worked");
       console.log(err);
@@ -189,7 +194,7 @@ const CountryCard = ({ country }) => {
                     <Button
                       type="submit"
                       className="form-button"
-                      // onClick={() => showForm(false)}
+                      // onClick={() => setShowForm(false)}
                     >
                       {" "}
                       Add Activity
@@ -223,6 +228,28 @@ const CountryCard = ({ country }) => {
                     >
                       Add your own activity
                     </Button>
+                    {showSuccess && (
+                      <div class="container p-5 error countryerror">
+                        <div
+                          class="alert alert-success alert-dismissible fade show errorbox countryerror"
+                          role="alert"
+                        >
+                          <strong>
+                            You have successfully added a new activity to{" "}
+                            {country.countryData.name}
+                          </strong>
+                          <button
+                            type="button"
+                            class="close closebutton countryclose successclose"
+                            data-dismiss="alert"
+                            aria-label="Close"
+                            onClick={() => setShowSuccess(false)}
+                          >
+                            <span aria-hidden="True">&times;</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
                     <div
                       style={{
                         position: "absolute",
