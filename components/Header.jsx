@@ -34,11 +34,7 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand
-          as={Link}
-          to={"/"}
-          style={{ color: "grey", fontSize: "16px" }}
-        >
+        <Navbar.Brand as={Link} to={"/"}>
           Design My Trip
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
