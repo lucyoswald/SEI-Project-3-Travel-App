@@ -8,7 +8,11 @@ import jwt_decode from "jwt-decode";
 const CountryCard = ({ country }) => {
   const lsCountries = localStorage.getItem("localStorageCountries");
   const [active, setActive] = useState(
-    lsCountries.includes(country.countryData.name) ? true : false
+    lsCountries
+      ? lsCountries.includes(country.countryData.name)
+        ? true
+        : false
+      : false
   );
   const [numOfLikes, setNumOfLikes] = useState(
     country.countryData.numberOfLikes
@@ -21,9 +25,7 @@ const CountryCard = ({ country }) => {
   // }
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
-
   const [showSuccess, setShowSuccess] = useState(false);
-
 
   const initialFormData = {
     category: "",
@@ -215,11 +217,7 @@ const CountryCard = ({ country }) => {
                       value={formData.linkToWebsite}
                       onChange={onChange}
                     />
-                    <Button
-                      type="submit"
-                      className="form-button"
-                      // onClick={() => setShowForm(false)}
-                    >
+                    <Button type="submit" className="form-button">
                       {" "}
                       Add Activity
                     </Button>
