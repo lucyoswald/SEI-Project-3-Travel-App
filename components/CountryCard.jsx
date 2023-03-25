@@ -25,6 +25,7 @@ const CountryCard = ({ country }) => {
   // }
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
+
   const [showSuccess, setShowSuccess] = useState(false);
 
   const initialFormData = {
@@ -217,7 +218,11 @@ const CountryCard = ({ country }) => {
                       value={formData.linkToWebsite}
                       onChange={onChange}
                     />
-                    <Button type="submit" className="form-button">
+                    <Button
+                      type="submit"
+                      className="form-button"
+                      // onClick={() => setShowForm(false)}
+                    >
                       {" "}
                       Add Activity
                     </Button>
