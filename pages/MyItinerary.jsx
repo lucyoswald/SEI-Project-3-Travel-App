@@ -8,17 +8,9 @@ import ItineraryCard from "../components/ItineraryCard";
 
 const MyItinerary = () => {
   const [activityDetails, setActivityDetails] = useState([]);
-  // = useState({
-  //   activityCountry: "",
-  //   description: "",
-  //   link: "",
-  //   activityName: "",
-  //   price: 0,
-  // });
   const token = localStorage.getItem("token");
   const decodedToken = jwt_decode(token);
   let userId = decodedToken.id;
-  // console.log(userId);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,9 +22,8 @@ const MyItinerary = () => {
         });
         // console.log(dbResponse);
         const { foundUser } = dbResponse.data;
-        // console.log(foundUser);
+        console.log(foundUser);
         const itineraryArray = foundUser.itinerary;
-        console.log(itineraryArray);
         let updatedItineraryArray = itineraryArray.map((activity) => {
           return {
             activityCountry: activity.activityCountry,
@@ -40,17 +31,38 @@ const MyItinerary = () => {
             link: activity.link,
             activityName: activity.name,
             price: activity.price,
-            activityId: activity.id,
+            activityId: activity._id,
           };
         });
-        // console.log(updatedItineraryArray);
+        console.log(updatedItineraryArray);
         setActivityDetails(updatedItineraryArray);
       } catch (err) {
-        console.log(err);
+        next(err);
       }
     };
     fetchData();
   }, []);
+
+  const deleteActivity = async (e) => {
+    try {
+      console.log("You clicked the delete button");
+      console.log(`This is the activityId ${e.target.value}`);
+      console.log(`This is the userId ${userId} `);
+      const removedActivity = await axios.delete(`${API_URL}/user/${userId}`, {
+        params: {
+          activityId: e.target.value,
+        },
+      });
+      console.log(removedActivity);
+      setActivityDetails(
+        activityDetails.filter(
+          (activity) => activity.activityId !== e.target.value
+        )
+      );
+    } catch (err) {
+      next(err);
+    }
+  };
 
   return (
     <div classname="itinerary-card-container">
@@ -58,7 +70,7 @@ const MyItinerary = () => {
       <ul className="itinerary-card">
         {activityDetails.map(
           ({
-            activityCountry,
+            // activityCountry,
             description,
             link,
             activityName,
@@ -67,12 +79,14 @@ const MyItinerary = () => {
           }) => {
             return (
               <ItineraryCard
-                activityCountry={activityCountry}
+                deleteActivity={deleteActivity}
+                // activityCountry={activityCountry}
                 activity={activityName}
                 description={description}
                 link={link}
                 price={price}
                 activityId={activityId}
+                key={activityId}
               />
             );
           }

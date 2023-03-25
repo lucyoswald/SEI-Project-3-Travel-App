@@ -34,11 +34,7 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand
-          as={Link}
-          to={"/"}
-          style={{ color: "grey", fontSize: "16px" }}
-        >
+        <Navbar.Brand as={Link} to={"/"}>
           Design My Trip
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -52,7 +48,6 @@ const Header = () => {
             <ul>
               {isLoggedIn
                 ? loggedInNavigationLinks.map((link, idx) => (
-                    // double check the order of these once login/register is fixed
                     <Nav.Link
                       className="login_links"
                       key={idx}
