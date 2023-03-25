@@ -8,7 +8,11 @@ import jwt_decode from "jwt-decode";
 const CountryCard = ({ country }) => {
   const lsCountries = localStorage.getItem("localStorageCountries");
   const [active, setActive] = useState(
-    lsCountries.includes(country.countryData.name) ? true : false
+    lsCountries
+      ? lsCountries.includes(country.countryData.name)
+        ? true
+        : false
+      : false
   );
   const [numOfLikes, setNumOfLikes] = useState(
     country.countryData.numberOfLikes
@@ -23,7 +27,6 @@ const CountryCard = ({ country }) => {
   const [showError, setShowError] = useState(false);
 
   const [showSuccess, setShowSuccess] = useState(false);
-
 
   const initialFormData = {
     category: "",
