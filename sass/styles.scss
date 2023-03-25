@@ -7,3 +7,6 @@
 @import "./CountryPage.scss";
 @import "./ItineraryCard.scss";
 @import "./MyItinerary.scss";
+.screen {
+  min-height: calc(100vh - 56px);
+}

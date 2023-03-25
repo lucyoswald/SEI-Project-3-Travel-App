@@ -17,12 +17,7 @@ const CountryCard = ({ country }) => {
   const [numOfLikes, setNumOfLikes] = useState(
     country.countryData.numberOfLikes
   );
-  // if (lsCountries.includes(country.countryData.name)) {
-  //   setActive(true);
-  //   console.log("active true");
-  // } else {
-  //   setActive(false);
-  // }
+
   const [showForm, setShowForm] = useState(false);
   const [showError, setShowError] = useState(false);
 
@@ -90,30 +85,16 @@ const CountryCard = ({ country }) => {
   };
 
   const likeButton = async () => {
-    //get item from local storage and save
-
-    // const lsCountries = localStorage.getItem("localStorageCountries");
-
-    // if (lsCountries.includes(country.countryData.name)) {
-    //   setActive(true);
-    //   console.log("active true");
-    // } else {
-    //   setActive(false);
-    // }
-
-    // let newNumberOfLikes = country.countryData.numberOfLikes;
     const id = country.countryData._id;
 
     try {
       const token = localStorage.getItem("token");
       const userId = localStorage.getItem("userId");
-      //user id in the route
-      // if (!active) {
+
       const res = await axios.patch(`${API_URL}/userlikes/${userId}`, {
         country: country.countryData.name,
       });
       console.log(res);
-      // }
 
       const localStorageCountries = res.data.updatedLikes.likedCountries;
 
@@ -256,9 +237,9 @@ const CountryCard = ({ country }) => {
                       Add your own activity
                     </Button>
                     {showSuccess && (
-                      <div class="container p-5 error countryerror">
+                      <div class="container p-5 error countryerror successerror">
                         <div
-                          class="alert alert-success alert-dismissible fade show errorbox countryerror"
+                          class="alert alert-success alert-dismissible fade show errorbox countryerror "
                           role="alert"
                         >
                           <strong>
@@ -301,7 +282,7 @@ const CountryCard = ({ country }) => {
                         />
                         <p
                           style={{
-                            marginLeft: "5px",
+                            marginLeft: "12px",
                             marginTop: "2px",
                           }}
                         >

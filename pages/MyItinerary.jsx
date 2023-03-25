@@ -65,7 +65,7 @@ const MyItinerary = () => {
   };
 
   return (
-    <div classname="itinerary-card-container">
+    <div className="itinerary-card-container screen">
       <h2 className="itinerary-heading">Personal Itinerary</h2>
       <ul className="itinerary-card">
         {activityDetails.map(
