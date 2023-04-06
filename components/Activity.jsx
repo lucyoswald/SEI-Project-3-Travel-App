@@ -7,6 +7,17 @@ import { Card, Button } from "react-bootstrap";
 const ActivityCard = ({ activity }) => {
   const [addedToItinerary, setAddedToItinerary] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [readMore, setReadMore] = useState(false);
+  const [addedToI, setAddedToI] = useState(false);
+  const [viewUpdateForm, setViewUpdateForm] = useState(false);
+
+  const toggleReadMore = () => {
+    setReadMore(!readMore);
+  };
+
+  const addedToIStyling = () => {
+    setAddedToI(!addedToI);
+  };
 
   const initialFormData = {
     category: activity.category,
@@ -31,6 +42,7 @@ const ActivityCard = ({ activity }) => {
   };
 
   const onSubmit = async (e) => {
+    setViewUpdateForm(true);
     console.log("update button clicked");
     e.preventDefault();
     try {
@@ -76,8 +88,7 @@ const ActivityCard = ({ activity }) => {
 
   return (
     <Card
-      // style={{ maxWidth: "450px" }}
-      className="activity_card"
+      className={viewUpdateForm ? "activity_card_expanded" : "activity_card"}
     >
       <Card.Img
         variant="top"
@@ -87,13 +98,31 @@ const ActivityCard = ({ activity }) => {
       <Card.Body>
         <Card.Title className="activity_name">{activity.name}</Card.Title>
         <Card.Text className="activity_text">
-          <span>{activity.description}</span> <br />
+          <p style={{ display: "inline-block" }}>
+            {readMore
+              ? activity.description
+              : activity.description.slice(0, 200)}
+            {activity.description.length > 200 && (
+              <span className="read-more" onClick={toggleReadMore}>
+                {readMore ? " ...Read Less" : " ...Read More"}
+              </span>
+            )}
+          </p>
+          <br />
+          <br />
           <span> {activity.location}</span>
           <br /> <span>Cost: £{activity.price}</span>
           <Button
-            onClick={() => addToItinerary(activity._id)}
+            onClick={() => {
+              addedToIStyling();
+              addToItinerary(activity._id);
+            }}
             variant="primary"
             className="cardbutton"
+            style={{
+              position: "absolute",
+              bottom: "10px",
+            }}
           >
             {addedToItinerary ? "Added to Itinerary" : "Add to Itinerary"}
           </Button>
@@ -156,18 +185,20 @@ const ActivityCard = ({ activity }) => {
               </Button>{" "}
             </form>
           ) : (
-            <Button className="cardbutton updateButton" onClick={onClick}>
+            <Button
+              className="cardbutton updateButton"
+              style={{
+                position: "absolute",
+                left: "135px",
+                marginLeft: addedToI && "20px",
+                bottom: "10px",
+              }}
+              onClick={onClick}
+            >
               Update
             </Button>
           )}
         </Card.Text>
-        {/* <Button
-          onClick={() => addToItinerary(activity._id)}
-          variant="primary"
-          className="cardbutton"
-        >
-          {addedToItinerary ? "Added to Itinerary" : "Add to Itinerary"}
-        </Button> */}
       </Card.Body>
     </Card>
   );
