@@ -56,7 +56,7 @@
 }
 .activity_card_expanded {
   margin-bottom: 200px !important;
-  height: 500px;
+  height: 900px !important;
 }
 .categories-container {
   display: flex;
@@ -72,6 +72,7 @@
 .read-more {
   cursor: pointer;
   color: grey;
+  display: inline !important;
 }
 .activity_name {
   font-size: 16px !important;
