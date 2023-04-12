@@ -2,7 +2,7 @@
 
 ## SEI Project 3 - MERN Stack Travel App
 
-##### Link to backend https://github.com/lucyoswald/Travel-API
+##### Link to Backend https://github.com/lucyoswald/Travel-API
 
 For project 3, we were asked to work as a group to build a full stack app using the MERN stack. We decided to create a Travel App that allows users to search for a country from our database. Once logged in, the user can discover available activities for that specific country and add these to their own personal itinerary. They also have the ability to add their own activities to the country, there is also a like feature so you can see how many users have liked a country. We created our back-end API using MongoDB and Express. Our group used Excalidraw to map out the project and then throughout the project, JIRA to help allocate tasks and track each other's progress.
 
