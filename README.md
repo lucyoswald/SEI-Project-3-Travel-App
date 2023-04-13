@@ -272,7 +272,7 @@ const countryLikes = async (req, res, next) => {
 ### Frontend
 
 ### Task Allocation
-Exactly like the backend we individually had pages/components we were in charge of but across the board we collectively worked together on a number of parts, it was a real group effort. Github shows are commits for viewing what each project member completed. I will display parts of code I did but its impossible to show everything. For the front-end I contributed to a lot of the styling overall too. 
+Similar to the backend, we had specific pages/components assigned to us individually, but as a team, we collaborated on several other aspects of the project. It was a genuine group endeavor. The commits on Github provide a record of each team member's contributions. While I'll showcase some of the code I worked on, it's not feasible to display everything. Moreover, I also contributed significantly to the overall styling of the front-end.
 
 ### Overview
 Our website has several pages that users can access to search and explore different countries and activities. The homepage includes a search function to search for countries in our database. The allcountries page displays a list of all the countries in our database. When a user clicks on or searches for a specific country, they will be directed to the individual country page, which includes information about the country and available activities. We use the countrycard component for the specific country page and the allcountriescard component for the all countries page. The itinerary page displays a user's chosen activities, and we use the itinerary card component for this page. Additionally, we have a login and sign up page for user authentication. Our website also includes a header and footer component, as well as an activity carousel component for displaying activities on the individual country page. Finally, we have implemented a loading visual component from Bootstrap that appears on all of our pages.
@@ -549,9 +549,9 @@ const likeButton = async () => {
   
 ### Bootstrap
 
-I used bootstrap to create the activity carousel in order to display the activities in a user friendly way, so they could click through each one but also so they swipe between each one on a timer
+I used bootstrap to create the activity carousel in order to display the activities in a user friendly way, so they could click through each one but also so they swipe between each one on a timer. We also implemented bootstrap for all our cards, the loading visual and the the responsive nav bar. 
 
-Insert carasouel + discuss other bootstrap things?
+
 
 ### Update Activity Button & Errors
 
