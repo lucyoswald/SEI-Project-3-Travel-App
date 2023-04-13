@@ -52,7 +52,7 @@ We also used JIRA, the Project Management tool, to effectively allocate tasks an
 ### Backend:
 
 ### Task Allocation: 
-I will include some specific examples of code that I built, as we individually had pages/components we were in charge of but across the board we collectively worked together on a number of parts, it was a real group effort. Github shows are commits for viewing what each project member completed. 
+I'll provide concrete instances of the code I developed, as each team member was responsible for their respective pages or components. However, we collaborated as a group on several aspects of the project, making it a collective effort. The commits on Github allow you to see the contributions made by each member of the team.
 
 ### Overview: 
 I would say some of the main talking points re our backend would be the controllers we built out and the seeding data. This is where we spent most of our time updating and changing things. 
