@@ -45,15 +45,11 @@ const MyItinerary = () => {
 
   const deleteActivity = async (e) => {
     try {
-      console.log("You clicked the delete button");
-      console.log(`This is the activityId ${e.target.value}`);
-      console.log(`This is the userId ${userId} `);
       const removedActivity = await axios.delete(`${API_URL}/user/${userId}`, {
         params: {
           activityId: e.target.value,
         },
       });
-      console.log(removedActivity);
       setActivityDetails(
         activityDetails.filter(
           (activity) => activity.activityId !== e.target.value

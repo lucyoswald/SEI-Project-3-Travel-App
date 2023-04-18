@@ -20,8 +20,6 @@ const Header = () => {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("token") ? true : false);
     console.log("Location updated");
-    // console.log({ location });
-    // console.log({ navigate });
   }, [location]);
   console.log(isLoggedIn);
 
@@ -34,7 +32,7 @@ const Header = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to={"/"}>
+        <Navbar.Brand as={Link} to={"/"} onClick="hide.bs.dropdown">
           Design My Trip
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -53,7 +51,6 @@ const Header = () => {
                       key={idx}
                       as={Link}
                       to={link.slug}
-                      // onClick="hide.bs.dropdown"
                       onClick={link.title === "Sign Out" && logOut}
                     >
                       <li>{link.title}</li>
