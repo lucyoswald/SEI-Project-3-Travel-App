@@ -146,11 +146,7 @@ const ActivityCard = ({ activity }) => {
                 value={formData.linkToWebsite}
                 onChange={onChange}
               />
-              <Button
-                type="submit"
-                className="form-button"
-                // onClick={() => setShowForm(false)}
-              >
+              <Button type="submit" className="form-button">
                 {" "}
                 Update
               </Button>{" "}
