@@ -89,6 +89,7 @@ const Signup = () => {
           <div
             class="alert alert-danger alert-dismissible fade show signuperror"
             role="alert"
+            style={{ position: "absolute", width: "200px" }}
           >
             <strong>Something went wrong...</strong>
             <button

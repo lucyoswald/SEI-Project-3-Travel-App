@@ -45,8 +45,18 @@
 }
 
 //Actvities styling (this took me the whole damn night)
+
+.activity_text {
+  font-size: 12px;
+  height: 220px;
+  padding: 5px 2px;
+}
 .activity_card {
   margin-bottom: 200px !important;
+}
+.activity_card_expanded {
+  margin-bottom: 200px !important;
+  height: 900px !important;
 }
 .categories-container {
   display: flex;
@@ -59,19 +69,11 @@
   width: 30%;
 }
 
-.activity_text {
-  font-size: 12px;
-  height: 200px;
-  overflow: hidden;
-  padding: 5px 2px;
+.read-more {
+  cursor: pointer;
+  color: grey;
+  display: inline !important;
 }
-
-.activity_text:hover {
-  height: auto;
-  overflow: visible;
-  transition: height 0.5s ease;
-}
-
 .activity_name {
   font-size: 16px !important;
 }

@@ -65,15 +65,16 @@ const Login = () => {
         <p onClick={() => navigate("/signup")}>Don't have an account? </p>
       </form>
       {showError && (
-        <div classs="container p-5 lerror">
+        <div classs="container p-5 serror">
           <div
-            class="alert alert-danger alert-dismissible fade show loginerror"
+            class="alert alert-danger alert-dismissible fade show signuperror"
             role="alert"
+            style={{ position: "absolute", width: "200px" }}
           >
             <strong>Something went wrong...</strong>
             <button
               type="button"
-              class="close lclosebutton"
+              class="close sclosebutton"
               data-dismiss="alert"
               aria-label="Close"
               onClick={() => setShowError(false)}
