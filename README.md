@@ -646,6 +646,10 @@ I also added the read more/ read less detail to the activities card so the user 
             
 ## Finished Product:
 
+https://github.com/lucyoswald/Travel-App/assets/116687424/abf1dca5-d5ba-4b2c-85da-abb0fd1278b0
+
+
+
 ## Wins & Challenges
 
 ### Wins:
