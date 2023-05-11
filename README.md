@@ -190,7 +190,7 @@ In the backend in the userController within the login endpoint I also added the 
 
 ```
 
-### Back end Like button
+### Backend like button
 Something I’m proud of is the like button I created, this was definitely a stretch goal so I was pleased I managed to figure it out in time. In our user controller I created a function called userlikedCountries that would update the likedCountries array that is in the user model. If the user is found, the function extracts the user's current list of liked countries (foundUser.likedCountries) and checks if the new country provided is already in the list. If it is, the function removes the country from the list using the Array.splice() method.
 
 If the new country is not in the list, the function adds the country to the list using the Array.push() method. Finally, the function saves the updated foundUser object with the new liked countries list using the foundUser.save() method, and stores the updated object in the updatedLikes constant. 
